@@ -1,0 +1,57 @@
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h5>customer</h5>
+<div>
+
+    <a class="btn btn-primary btn-sm btn-block" href="#">Create customer</a>
+    <table class="table table-sm">
+        <tr>
+            <td>customer</td>
+            <td>phone</td>
+        </tr>
+        {% for customer in customers %}
+            <tr>
+                <td>{{customer.name}}</td>
+                <td>{{customer.phone}}</td>
+            </tr>
+        {%endfor%}
+
+      
+    </table>
+</div>
+
+
+<div>
+    <a class="btn btn-primary btn-sm btn-block" href="{% url 'order_form' %}">Create order</a>
+    <table class="table table-sm">
+        <tr>
+            <td>Views</td>
+            <td>Product</td>
+            <td>Date order</td>
+            <td>Status</td>
+            <td>Update</td>
+            <td>Remove</td>
+           
+        </tr>
+        {% for order in orders %}
+            <tr>
+                
+                <td><a class="btn btn-sm btn-info" href="{% url 'customer' %}">View</a></td>
+                <td>{{order.product}}</td>
+                <td>{{order.date_created}}</td>
+                <td>{{order.status}}</td>
+                <td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a></td>
+                <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">Delete</a></td>
+
+            </tr>
+        {%endfor%}
+
+       
+    </table>
+</div>
+
+
+{% endblock %}
